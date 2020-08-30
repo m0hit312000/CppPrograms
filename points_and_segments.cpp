@@ -15,8 +15,8 @@ vector<int> fast_count_segments(vector<int> starts, vector<int> ends, vector<int
       else {
         j = starts.size(); 
       }
-      cnt[i] = k;
     }
+    cnt[i] = k;
   }
   return cnt;
 }
@@ -43,7 +43,7 @@ int main() {
     std::cin >> points[i];
   }
   //use fast_count_segments
-  vector<int> cnt = naive_count_segments(starts, ends, points);
+  vector<int> cnt = fast_count_segments(starts, ends, points);
   for (size_t i = 0; i < cnt.size(); i++) {
     std::cout << cnt[i] << ' ';
   }
