@@ -7,22 +7,20 @@ using std::vector;
 int lcs2(vector<int> &a, vector<int> &b) {
   //write your code here
   int l1 = a.size(), l2 = b.size();
-  int c[l1][l2];
-  for(int i = 0; i <= l1; i++) {
-    c[i][0] = 0;
-  }
-  for(int j = 0; j <= l2; j++) {
-    c[0][j] = 0;
-  }
-  for(int j = 1; j <= l1; j++) {  
-    for(int i = 1; i <= l2; i++) {
-      if(a[j-1] == b[i-1])
-       c[j][i] = 1 + c[j-1][i-1];
-      else if(a[j-1] != b[i-1])
-       c[j][i] = std::max(c[j][i-1], c[j-1][i]); 
-    }
-  }
-  return c[l1][l2];
+  int longSubSeq[l1+1][l2+1];
+   
+   //longSubSeq[i,j] will hold the LCS of str1 (0 to i-1) and str2 (0 to j-1)
+   for (int i=0; i<=l1; i++) {
+      for (int j=0; j<=l2; j++) {
+         if (i == 0 || j == 0)
+            longSubSeq[i][j] = 0;
+         else if (a[i-1] == b[j-1])
+            longSubSeq[i][j] = longSubSeq[i-1][j-1] + 1;
+         else
+            longSubSeq[i][j] = std::max(longSubSeq[i-1][j], longSubSeq[i][j-1]);
+      }
+   }
+   return longSubSeq[l1][l2];
 }
 
 int main() {
