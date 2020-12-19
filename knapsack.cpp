@@ -4,30 +4,19 @@
 
 using std::vector;
 
-int optimal_weight(int W, const vector<int> &w) {
-  //write your code here
-  int n = w.size();
-  int bag[n+1][W+1];
-
-  for(int i = 0; i <= n; i++) {
-    bag[i][0] = 0;
-  }
-
-  for(int j = 0; j <= W; j++) { 
-    bag[0][j] = 0;
-  }
-  
-  for(int i = 1; i <= n; i++) {
-    for(int j = 1; j <= W; j++) {
-      if(j - w[i-1] >= 0)
-       bag[i][j] = std::max(bag[i - 1][j], bag[i - 1][j - w[i - 1]] + w[i-1]);   
-      else
-       bag[i][j] = bag[i-1][j];
+int optimal_weight(int W, const vector<int> &w){
+    // use 1-D array from n to (n - weight) to fill the array
+    vector<int> c(W+1);
+    for(int i = 0; i < w.size(); ++i){
+        for(int j = W; j >= w[i]; --j){
+            // in this problem, cost and weight is equal
+            c[j] = std::max(c[j], c[j-w[i]] + w[i]);
+        }
     }
-  }
-
-  return bag[n][W];
+    // c[W] is the maximum value of knapsack with W weight
+    return c[W];
 }
+
 
 int main() {
   int n, W;
