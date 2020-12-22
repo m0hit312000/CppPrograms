@@ -74,6 +74,7 @@
         "typeinfo": "cpp",
         "valarray": "cpp",
         "variant": "cpp",
-        "LLInsertion.C": "cpp"
+        "LLInsertion.C": "cpp",
+        "LinkList.C": "cpp"
     }
 }
