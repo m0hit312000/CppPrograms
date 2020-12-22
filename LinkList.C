@@ -110,6 +110,25 @@ void deleteNode(int loc) {
    }
 }
 
+void reverseLinkList() {
+   struct Node* Prev = NULL; 
+   struct Node* Curr = head; 
+   struct Node* Next = NULL; 
+
+   if(head == NULL) {
+       printf("List is empty");
+   }
+   else {
+       while(Curr != NULL) { 
+          Next = Curr -> next;
+          Curr -> next = Prev;
+          Prev = Curr;
+          Curr = Next;
+       }
+       head = Prev;
+   } 
+}
+
 int main() {
 
     push(2);
@@ -120,8 +139,9 @@ int main() {
     append(6);
     append(7);
     printList();
-    deleteNode(1);
-    deleteNode(4);
+    // deleteNode(1);
+    // deleteNode(4);
+    reverseLinkList();
     printList();
 
     return 0;
