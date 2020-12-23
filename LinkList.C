@@ -129,6 +129,25 @@ void reverseLinkList() {
    } 
 }
 
+struct Node *fixReverse(int n, struct Node* root) {
+    struct Node* Prev = NULL; 
+    struct Node* Curr = root; 
+    struct Node* Next = NULL; 
+    int count = 0;
+
+    while(Curr != NULL && count < n) { 
+        Next = Curr -> next;
+        Curr -> next = Prev;
+        Prev = Curr;
+        Curr = Next;
+        count++;
+    }
+    if(Next != NULL) {
+        root -> next = fixReverse(3, Next); 
+    }
+    return Prev;
+}
+
 int main() {
 
     push(2);
@@ -138,10 +157,14 @@ int main() {
     insertAfter(3, 4);
     append(6);
     append(7);
+    append(8);
+    append(9);
     printList();
     // deleteNode(1);
     // deleteNode(4);
-    reverseLinkList();
+    // reverseLinkList();
+    // printList();
+    head = fixReverse(3, head);
     printList();
 
     return 0;
