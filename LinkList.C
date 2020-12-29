@@ -178,13 +178,56 @@ struct Node *fixReverse(int n, struct Node *root)
     return Prev;
 }
 
-void nodeSwap()
+void nodeSwap(int x, int y)
 {
+    if (x == y)
+    {
+        return;
+    }
+    struct Node *currX = head, *prevX = NULL;
+    while (currX && currX->data != x)
+    {
+        prevX = currX;
+        currX = currX->next;
+    }
+
+    struct Node *currY = head, *prevY = NULL;
+    while (currY && currY->data != y)
+    {
+        prevY = currY;
+        currY = currY->next;
+    }
+
+    if (currX == NULL || currY == NULL)
+    {
+        return;
+    }
+
+    if (prevX != NULL)
+    {
+        prevX->next = currY;
+    }
+    else
+    {
+        head = currY;
+    }
+
+    if (prevY != NULL)
+    {
+        prevY->next = currX;
+    }
+    else
+    {
+        head = currX;
+    }
+
+    struct Node *temp = currY->next;
+    currY->next = currX->next;
+    currX->next = temp;
 }
 
 int main()
 {
-
     push(2);
     push(1);
     append(3);
@@ -199,7 +242,8 @@ int main()
     // deleteNode(4);
     // reverseLinkList();
     // printList();
-    head = fixReverse(3, head);
+    // head = fixReverse(3, head);
+    nodeSwap(5, 8);
     printList();
 
     return 0;
