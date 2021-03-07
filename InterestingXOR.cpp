@@ -48,10 +48,6 @@ int main()
         }
         reverse(a.begin(), a.end());
         reverse(b.begin(), b.end());
-        // REV(i, a.size() - 1, 0)
-        // {
-        //     cout << a[i];
-        // }
         REV(i, a.size() - 1, 0)
         {
             no1 += pow(2, i) * a[i];
@@ -60,7 +56,6 @@ int main()
         {
             no2 += pow(2, i) * b[i];
         }
-        // cout << no1;
         cout << no1 * no2 << "\n";
     }
 }
